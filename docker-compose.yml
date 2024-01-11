@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  app:
+    image: git.bbnavi.de/bbnavi-reg/ocpdb-proxy:latest
+    environment:
+      UPSTREAM_HTTP_ADDRESS: https://api.ocpdb.de
+    networks:
+     - public
+    logging:
+      driver: awslogs
+    deploy:
+      labels:
+        traefik.docker.network: public
+        traefik.enable: 'true'
+        traefik.http.routers.bbnavi-ocpdb-proxy.entrypoints: https
+        traefik.http.routers.bbnavi-ocpdb-proxy.rule: Host(`ocpdb.bbnavi.de`)
+        traefik.http.routers.bbnavi-ocpdb-proxy.tls.certresolver: acme
+        traefik.http.services.bbnavi-ocpdb-proxy.loadbalancer.server.port: '80'
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+         - node.role == worker
+networks:
+  public:
+    external: true
