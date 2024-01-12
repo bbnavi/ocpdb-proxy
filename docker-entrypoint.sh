@@ -8,8 +8,4 @@ if [ "x$RESOLVERS" = "x" ]; then
     exit 1
 fi
 
-cp /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.template
-
-envsubst '$RESOLVERS $UPSTREAM_HTTP_ADDRESS $CLIENT_MAX_BODY_SIZE' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf
-
 exec "$@"
