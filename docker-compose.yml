@@ -2,8 +2,6 @@ version: '3.3'
 services:
   app:
     image: git.bbnavi.de/bbnavi-reg/ocpdb-proxy:latest
-    environment:
-      UPSTREAM_HTTP_ADDRESS: https://api.ocpdb.de
     networks:
      - public
     logging:

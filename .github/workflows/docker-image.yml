@@ -22,3 +22,10 @@ jobs:
       with:
         push: true
         tags: git.bbnavi.de/bbnavi-reg/ocpdb-proxy:latest
+  deploy: 
+    runs-on: self-hosted
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Deploy Stack
+        run: |
+          docker stack deploy --compose-file .quantum ocpdb-proxy
