@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   app:
-    image: git.bbnavi.de/bbnavi-reg/ocpdb-proxy:latest
+    image: ghcr.io/bbnavi/ocpdb-proxy:main
     networks:
      - public
     logging:
